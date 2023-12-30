@@ -16,6 +16,8 @@
 using namespace term;
 using namespace std;
 
+
+
 class Habitacao {
 
 public:
@@ -26,19 +28,24 @@ public:
 //    void adicionarZona(int x, int y, Window &w);
     void removerZona(int zonaId, Window &wt);
 
-    void ListaPropriedadeZona(int zonaId,Window &w1);
+    void ListaPropriedadeZona(int zonaId, Window &w1);
+
 //    void listarZonas() const;
     void criarHabitacao(int nlinha, int nColunas, Terminal &t);
+
 //    void limparHabitacao();
     int exiteZona(int x, int y);
-    void listaComponente(int zonaId,Window &w1);
+
+    void listaComponente(int zonaId, Window &w1);
 //
 //    void mostrarHabitacao(term::Window &w) const;
 
     //  void exibir_habitacao(int y,int x) const;
     // ~Habitacao(){};
     void cria_zona(int linha, int coluna, Window &wt);
-    void modificaPropriZona(string nome,int zonaId,float valor,Window &wt);
+
+    void modificaPropriZona(string nome, int zonaId, float valor, Window &wt);
+
 private:
     int tamanhoX{};
     int tamanhoY{};

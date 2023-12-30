@@ -4,19 +4,16 @@
 
 #include "Regra.h"
 
-Regra::Regra(int id, const string &tipo, int sensorId): id(id), tipo(tipo), sensorId(sensorId) {}
-int Regra::getId() const {
-    return id;
+Regra::Regra(const string &tp, float v1, float v2) : tipo(tp), valor1(v1), valor2(v2) {};
+
+int Regra::getValor2() const {
+    return valor2;
 }
 
-int Regra::getSensorId() const {
-    return sensorId;
+int Regra::getValor1() const {
+    return valor1;
 }
 
 string Regra::getTipo() const {
     return tipo;
-}
-
-void Regra::mostrarInformacao(Window w) const {
-    w<< "ID: " << id << ", Tipo: " << tipo << ", Sensor ID: " << sensorId << "\n";
 }

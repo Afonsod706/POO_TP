@@ -14,15 +14,14 @@ using namespace std;
 using namespace term;
 class Regra {
 public:
-    Regra(int id, const string& tipo, int sensorId );
-    int getId() const;
+    Regra(const string &tp,float v1,float v2);
     string getTipo() const;
-    int getSensorId () const;
-    void mostrarInformacao(Window w) const;
+    int getValor1 () const;
+    int getValor2() const;
 private:
-    int id;
+    float valor1;
     string tipo;
-    int sensorId;
+    float valor2;
 };
 
 

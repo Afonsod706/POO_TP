@@ -4,14 +4,26 @@
 #ifndef POO_TP_SENSOR_H
 #define POO_TP_SENSOR_H
 #include <string>
+#include <vector>
+#include "Propriedade.h"
+using namespace std;
 
 class Sensor {
 public:
-    Sensor(const std::string& type);
-    void detect() const;
+    Sensor(char c,const string &propOb);
+
+    int getId()const;
+    char getSimbolo()const;
+    string getPropriedadeObervada()const;
+
+    float lerPropriedade(const vector<Propriedade*> prop) const;
 
 private:
-    std::string type;
+    char tipo;
+    string propriedadeObervada;
+    int sensorId;
+    static int proxId;
+
 };
 
 

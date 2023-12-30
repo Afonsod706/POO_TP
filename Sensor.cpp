@@ -5,8 +5,29 @@
 #include "Sensor.h"
 #include <iostream>
 
-Sensor::Sensor(const std::string& type) : type(type) {}
+int Sensor::proxId = 1;
 
-void Sensor::detect() const {
-    std::cout << "Sensor " << type << " detectou algo.\n";
+Sensor::Sensor(char c, const string &propOb) : tipo(c), propriedadeObervada(propOb) {
+    sensorId = proxId++;
+};
+
+int Sensor::getId() const {
+    return sensorId;
+}
+
+char Sensor::getSimbolo() const {
+    return tipo;
+}
+
+string Sensor::getPropriedadeObervada() const {
+    return propriedadeObervada;
+}
+
+float Sensor::lerPropriedade(const vector<Propriedade *> prop) const {
+    for (const auto &p: prop) {
+        if (p->getNome() == propriedadeObervada) {
+            return p->getValor();
+        }
+    }
+    return -1;
 }

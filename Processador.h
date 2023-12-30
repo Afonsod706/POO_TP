@@ -12,16 +12,20 @@
 
 class Processador {
 public:
-    Processador();
-    void adicionarRegra(int idRegra,int idSensore);
+    Processador(const string &cmd =""):comando(cmd){};
+
+    void adicionarRegra(const string &novaRegra);
     void listarRegras( ) const;
-    void removerRegra(int id);
+    void removerRegra(const string &novaRegra);
+    void setComando(const string &cmd);
+    void verificaRegras();//não concluido
+    void verificaComando();//não concluido
 
     ~Processador();
 private:
-    int idRegra=0;
-    int idSensor=0;
-    vector <Regra> * regras;
+   vector<Regra> regras;
+   string comando;
+   int procId;
 };
 
 

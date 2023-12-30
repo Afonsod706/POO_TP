@@ -4,14 +4,14 @@
 
 #include "Zona.h"
 
-
 Zona::Zona(int id) : id(id) {
     criarPropriedadesPadrao();
+    adicionarSensor('l',"Luz");
+    adicionarSensor('t',"Temperatura");
 }
 
 void Zona::criarPropriedadesPadrao() {
     propriedades.push_back(new Propriedade("Temperatura", 25.0, -273.0));
-
     propriedades.push_back(new Propriedade("Luz", 25.0, 0));
     propriedades.push_back(new Propriedade("Radiacao", 25.0, 0));
     propriedades.push_back(new Propriedade("Vibracao", 25.0, 0));
@@ -26,16 +26,17 @@ const int Zona::obterId() {
 }
 
 void Zona::modificarPropriedade(const string nome, float novoValor, Window &w1) {
-    w1 << "entra aqui\n";
+
     for (auto &prop: propriedades) {
         if (prop->getNome() == nome) {
-            w1 << "encontra aqui\n";
+
             if (novoValor >= prop->getValorMin() && novoValor <= prop->getValorMax()) {
                 prop->setValor(novoValor, w1);
                 w1 << "\nPropriedade Alterada\n" << nome << ":" << prop->getValor();
             } else {
                 w1 << "Valor fora do intervalo aceitavel para" << nome << "\n";
             }
+            listarComponentes(w1);
             // listarPropriedade(w1);
             return;
         }
@@ -43,8 +44,8 @@ void Zona::modificarPropriedade(const string nome, float novoValor, Window &w1) 
     w1 << "Propriedade :" << nome << " nao encontrado\n";
 }
 
-void Zona::adicionarSensor(const std::string &type) {
-    sensores.push_back(Sensor(type));
+void Zona::adicionarSensor(char c,const string &nomeP) {
+    sensores.emplace_back(c,nomeP);
 }
 
 void Zona::adicionarAparelho(const std::string &type) {
@@ -53,6 +54,11 @@ void Zona::adicionarAparelho(const std::string &type) {
 
 void Zona::listarComponentes(Window &w1) const {
     w1 << "\ncomponente na zona:" << id;
+    w1<<"\nSensores:";
+    for(const auto sensor:sensores){
+        w1<<"\n"<<sensor.getSimbolo()<<sensor.getId()<<":"<<sensor.getPropriedadeObervada()<<"="<<sensor.lerPropriedade(propriedades);
+    }
+
 }
 
 void Zona::listarPropriedade(Window &w1) {
@@ -62,13 +68,3 @@ void Zona::listarPropriedade(Window &w1) {
     }
 }
 
-
-//void Zona::mostrarInformacoes() const {
-//    std::cout << "Zona na posição (" << x << ", " << y << ")\n";
-//    for (const auto& sensor : sensor) {
-//        sensor.detect();
-//    }
-//    for (const auto& aparelho : aparelho) {
-//        aparelho.ligar();
-//    }
-//}

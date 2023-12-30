@@ -35,7 +35,7 @@ public:
     // Adicionar um novo componente à zona com base no tipo e na descrição(tipo|comando)
     void adicionaComponente(char tipo, const string descricao);
 
-    void adicionarSensor(const string &type);
+    void adicionarSensor(char c,const string &nomeP);
 
     void adicionarAparelho(const string &type);
 
