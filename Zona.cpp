@@ -14,7 +14,6 @@ void Zona::criarPropriedadesPadrao() {
 
     propriedades.push_back(new Propriedade("Luz", 25.0, 0));
     propriedades.push_back(new Propriedade("Radiacao", 25.0, 0));
-
     propriedades.push_back(new Propriedade("Vibracao", 25.0, 0));
     propriedades.push_back(new Propriedade("Humidade", 25.0, 0, 100));
     propriedades.push_back(new Propriedade("Fumo", 25.0, 0, 100));
