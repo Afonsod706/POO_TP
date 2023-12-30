@@ -1,0 +1,89 @@
+#include <iostream>
+#include <vector>
+#include <map>
+
+// Enumeração para os tipos de propriedades
+enum class Propriedade {
+    TEMPERATURA,
+    LUZ,
+    RADIAÇÃO,
+    VIBRAÇÃO,
+    HUMIDADE,
+    FUMO,
+    SOM
+};
+
+// Classe que representa uma Propriedade do Ambiente
+class PropriedadeAmbiente {
+private:
+    Propriedade tipo;
+    double valor; // Valor numérico associado à propriedade
+
+public:
+    // Métodos para definir e obter o tipo e valor da propriedade
+    void setTipo(Propriedade p) { tipo = p; }
+    void setValor(double v) { valor = v; }
+    Propriedade getTipo() const { return tipo; }
+    double getValor() const { return valor; }
+};
+
+// Classe base para os Componentes (Sensor, Processador, Aparelho)
+class Componente {
+protected:
+    int ID; // ID único do componente
+
+public:
+    // Métodos virtuais para serem implementados pelas classes derivadas
+    virtual void mostrarInformacoes() const = 0;
+    virtual char getRepresentacaoVisual() const = 0;
+    virtual void executarAcao() = 0;
+    // ... Outros métodos comuns a todos os componentes
+};
+
+// Classe que representa uma Zona de Habitação
+class ZonaHabitacao {
+private:
+    int linha, coluna; // Posição da zona na grelha
+    int ID; // ID único da zona
+    std::vector<Componente*> componentes; // Lista de componentes na zona
+    std::map<std::string, PropriedadeAmbiente> propriedades; // Propriedades da zona
+
+public:
+    // Métodos para adicionar/remover componentes, configurar propriedades, etc.
+    void adicionarComponente(Componente* comp) { /* implementação */ }
+    void removerComponente(int ID) { /* implementação */ }
+    void configurarPropriedade(std::string nome, double valor) { /* implementação */ }
+    // ... Outros métodos relacionados à zona
+};
+
+// Classes derivadas para Sensor, Processador e Aparelho, implementando métodos virtuais da classe Componente
+class Sensor : public Componente {
+    // Implementação específica para Sensor
+};
+
+class ProcessadorRegras : public Componente {
+    // Implementação específica para Processador de Regras
+};
+
+class Aparelho : public Componente {
+    // Implementação específica para Aparelho
+};
+
+// Classe principal que controla o simulador
+class SimuladorDomotica {
+private:
+    std::vector<ZonaHabitacao*> zonas; // Lista de zonas na habitação
+    int instanteAtual; // Controle do tempo simulado
+
+public:
+    // Métodos para adicionar/remover zonas, avançar tempo, interagir com o usuário, etc.
+    void adicionarZona(ZonaHabitacao* zona) { /* implementação */ }
+    void removerZona(int ID) { /* implementação */ }
+    void avancarTempo(int n) { /* implementação */ }
+    // ... Outros métodos de controle do simulador
+};
+
+int main() {
+    // Implemente o código principal do programa aqui
+    return 0;
+}
