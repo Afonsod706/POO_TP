@@ -4,6 +4,7 @@
 
 #ifndef POO_TP_PROCESSADOR_H
 #define POO_TP_PROCESSADOR_H
+
 #include "Regra.h"
 #include <string>
 #include <iostream>
@@ -12,20 +13,31 @@
 
 class Processador {
 public:
-    Processador(const string &cmd =""):comando(cmd){};
+    Processador(const string &cmd = "") : comando(cmd), procId(proxId++) {};
 
-    void adicionarRegra(const string &novaRegra);
-    void listarRegras( ) const;
-    void removerRegra(const string &novaRegra);
+    const int getNumRegras();
+
+    void adicionarRegra(const Regra &novaRegra);
+
+    void listarRegras() const;
+
+    int getId() const;
+
+    bool removerRegra(int regraId);
+
+    bool verificaRegras(const vector<Sensor> sensores) const;
+
     void setComando(const string &cmd);
-    void verificaRegras();//não concluido
-    void verificaComando();//não concluido
 
-    ~Processador();
+    void verificaComando(const vector<Sensor> sensores);//não concluido
+
+    ~Processador() {};
+
 private:
-   vector<Regra> regras;
-   string comando;
-   int procId;
+    vector<Regra> regras;
+    string comando;
+    int procId;
+    static int proxId;
 };
 
 

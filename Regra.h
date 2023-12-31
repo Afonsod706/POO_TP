@@ -9,6 +9,7 @@
 #include <vector>
 #include "Terminal.h"
 #include <algorithm>
+#include "Sensor.h"
 
 using namespace std;
 using namespace term;
@@ -18,11 +19,16 @@ public:
     string getTipo() const;
     int getValor1 () const;
     int getValor2() const;
+    int getId() const;
 private:
     float valor1;
     string tipo;
     float valor2;
+    int regId;
+    static int regraProxId;
 };
+
+
 
 
 #endif //POO_TP_REGRA_H

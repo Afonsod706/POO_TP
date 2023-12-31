@@ -3,8 +3,8 @@
 //
 
 #include "Regra.h"
-
-Regra::Regra(const string &tp, float v1, float v2) : tipo(tp), valor1(v1), valor2(v2) {};
+int Regra::regraProxId=1;
+Regra::Regra(const string &tp, float v1, float v2) : tipo(tp), valor1(v1), valor2(v2),regId(regraProxId++) {};
 
 int Regra::getValor2() const {
     return valor2;
@@ -16,4 +16,8 @@ int Regra::getValor1() const {
 
 string Regra::getTipo() const {
     return tipo;
+}
+
+int Regra::getId() const {
+    return regId;
 }

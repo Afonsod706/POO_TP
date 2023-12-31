@@ -21,45 +21,44 @@ class Zona {
 public:
     Zona(int id);
 
-    const int  obterId() ; //pega o id da zona
-    // Modificar o valor da propriedade na zona, se existir
-    void modificarPropriedade(const string nome, float novoValor,Window &w1);
+    const int  obterId() ; // Obtém o ID da zona
 
-    // Iterar e listar os componentes da zona com seus tipos, IDs, nomes e estados
-    void listarComponentes(Window &w1) const;
+    // Modifica o valor da propriedade na zona, se existir
+    void modificarPropriedade(const string nome, float novoValor, Window &w1);
 
-    // Listar propriedades reconhecidas na zona
-    void listarPropriedade(Window &w1) ;
+    // Itera e lista os componentes da zona com seus tipos, IDs, nomes e estados
+    void listarComponentes(Window &w1);
 
+    // Lista propriedades reconhecidas na zona
+    void listarPropriedade(Window &w1);
 
-    // Adicionar um novo componente à zona com base no tipo e na descrição(tipo|comando)
-    void adicionaComponente(char tipo, const string descricao);
+    // Adiciona um novo componente à zona com base no tipo e na descrição (tipo | comando)
+    char adicionaComponente(char tipo, const string descricao, Window &w1);
 
-    void adicionarSensor(char c,const string &nomeP);
+    // Adiciona um sensor à zona
+    void adicionarSensor(char c, const string &nomeP, Window &w1);
 
+    // Adiciona um processador de regra à zona
+    void adicionaProcessadorRegra(const string comando, Window &w1);
+
+    // Adiciona um aparelho à zona
     void adicionarAparelho(const string &type);
 
-    //Remover o componente da zona com base no tipo e no ID
+    // Remove o componente da zona com base no tipo e no ID
     void removerComponente(const char tipo, int idComp);
 
+    // Mostra informações (não está implementada no código fornecido)
     void mostraInfo(Window w2) const;
 
-//    void adicionarSensor(const std::string& type);
-//    void adicionarAparelho(const std::string& type);
-//    void mostrarInformacoes() const;
-
+    // Cria propriedades padrão na zona
     void criarPropriedadesPadrao();
 
-
 private:
-
-    int id;// adiciona id
-    vector<Propriedade *> propriedades;
-    vector<Sensor> sensores;
-    vector<Aparelhos> aparelhos;
-    //vector<Processador> processadores;
-
+    int id; // ID da zona
+    vector<Propriedade*> propriedades; // Vetor de propriedades
+    vector<Sensor*> sensores; // Vetor de sensores
+    vector<Aparelhos> aparelhos; // Vetor de aparelhos
+    vector<Processador*> processadores; // Vetor de processadores
 };
-
 
 #endif //POO_TP_ZONA_H

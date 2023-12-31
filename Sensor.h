@@ -11,12 +11,13 @@ using namespace std;
 class Sensor {
 public:
     Sensor(char c,const string &propOb);
+    Sensor(const string &propOb);
 
     int getId()const;
     char getSimbolo()const;
     string getPropriedadeObervada()const;
 
-    float lerPropriedade(const vector<Propriedade*> prop) const;
+    float lerPropriedade(const vector<Propriedade*> prop) ;
 
 private:
     char tipo;

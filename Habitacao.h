@@ -12,49 +12,41 @@
 #include "Propriedade.h"
 #include <vector>
 
-
 using namespace term;
 using namespace std;
-
-
 
 class Habitacao {
 
 public:
-    Habitacao();
+    Habitacao(); // Construtor padrão
 
-    Habitacao(int X, int Y);
+    Habitacao(int X, int Y); // Construtor com parâmetros X e Y
 
-//    void adicionarZona(int x, int y, Window &w);
-    void removerZona(int zonaId, Window &wt);
+    void removerZona(int zonaId, Window &wt); // Remove uma zona da habitação
 
-    void ListaPropriedadeZona(int zonaId, Window &w1);
+    void ListaPropriedadeZona(int zonaId, Window &w1); // Lista propriedades de uma zona específica
 
-//    void listarZonas() const;
-    void criarHabitacao(int nlinha, int nColunas, Terminal &t);
+    void criarHabitacao(int nlinha, int nColunas, Terminal &t); // Cria uma habitação com linhas e colunas
 
-//    void limparHabitacao();
-    int exiteZona(int x, int y);
+    int exiteZona(int x, int y); // Verifica se uma zona existe em uma posição específica
 
-    void listaComponente(int zonaId, Window &w1);
-//
-//    void mostrarHabitacao(term::Window &w) const;
+    void listaComponente(int zonaId, Window &w1); // Lista componentes de uma zona
 
-    //  void exibir_habitacao(int y,int x) const;
-    // ~Habitacao(){};
-    void cria_zona(int linha, int coluna, Window &wt);
+    void adicionaCompomentes(int ZonaId, char tipo, const string &descricao, Window &w1); // Adiciona componentes a uma zona
 
-    void modificaPropriZona(string nome, int zonaId, float valor, Window &wt);
+    void cria_zona(int linha, int coluna, Window &wt); // Cria uma zona em uma determinada posição
+
+    void modificaPropriZona(string nome, int zonaId, float valor, Window &wt); // Modifica a propriedade de uma zona
 
 private:
-    int tamanhoX{};
-    int tamanhoY{};
-    vector<vector<Zona>> zonas;
-    vector<Window> janelas; // Vector de janelas para representar as zonas
-    int proximoIdzona = 1;
+    int tamanhoX{}; // Tamanho X da habitação
+    int tamanhoY{}; // Tamanho Y da habitação
+    vector<vector<Zona>> zonas; // Vetor bidimensional de zonas
+    vector<Window> janelas; // Vetor de janelas para representar as zonas
+    int proximoIdzona = 1; // Próximo ID de zona a ser utilizado
+    vector<Processador> Processadores; // Vetor de processadores
     // Vetor de pares para associar ID da zona ao ponteiro para a janela correspondente
     vector<pair<int, Window *>> associacaoZonaJanela;
 };
-
 
 #endif //POO_TP_HABITACAO_H

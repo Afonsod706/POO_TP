@@ -20,6 +20,15 @@ int Habitacao::exiteZona(int x, int y) {
     return 0;
 }
 
+void Habitacao::adicionaCompomentes(int zonaId,char tipo, const string &descricao,Window &w1) {
+    for ( auto linha: zonas) {
+        for ( auto zona: linha) {
+            if (zona.obterId() == zonaId) {
+                w1<<"\nadicionado componente:"<<zona.adicionaComponente(tipo,descricao,w1);
+            }
+        }
+    }
+}
 void Habitacao::removerZona(int zonaId, Window &wt) {
 
     for (auto &linha: zonas) {

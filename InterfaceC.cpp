@@ -284,7 +284,8 @@ habitacao.listaComponente(stoi(parametros[0]),w1);
                     //  w1.clear();
                     w1 << set_color(2) << "comando valido:\n[" << comando << "]\n<ID zona> <s | p | a> <ID>\n";
                 } else if (comando == "cnovo") {
-                    //   w1.clear();
+                       w1.clear();
+                       habitacao.adicionaCompomentes(stoi(parametros[0]),parametros[1][0],parametros[2],w1);
                     w1 << set_color(2) << "comando valido:\n[" << comando
                        << "]\n<ID zona> <s | p | a> <tipo | comando>\n";
                 } else if (comando == "psalva") {
