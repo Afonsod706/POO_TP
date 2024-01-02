@@ -17,12 +17,12 @@ const int Processador::getNumRegras() {
     return regras.size();
 }
 
-bool Processador::removerRegra(int regraId) {
-    for(auto it =regras.begin();it!=regras.end();++it){
-        if(it->getId()==regraId){
-            it=regras.erase(it);//rmove o elemento e atualiza o iterador
-            return true;
-        }
-    }
-    return false;
-}
+//bool Processador::removerRegra(int regraId) {
+//    for(auto it =regras.begin();it!=regras.end();++it){
+//        if(it->getId()==regraId){
+//            it=regras.erase(it);//rmove o elemento e atualiza o iterador
+//            return true;
+//        }
+//    }
+//    return false;
+//}

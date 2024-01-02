@@ -20,15 +20,7 @@ int Habitacao::exiteZona(int x, int y) {
     return 0;
 }
 
-void Habitacao::adicionaCompomentes(int zonaId,char tipo, const string &descricao,Window &w1) {
-    for ( auto linha: zonas) {
-        for ( auto zona: linha) {
-            if (zona.obterId() == zonaId) {
-                w1<<"\nadicionado componente:"<<zona.adicionaComponente(tipo,descricao,w1);
-            }
-        }
-    }
-}
+
 void Habitacao::removerZona(int zonaId, Window &wt) {
 
     for (auto &linha: zonas) {
@@ -59,7 +51,7 @@ void Habitacao::removerZona(int zonaId, Window &wt) {
 
 void Habitacao::ListaPropriedadeZona(int zonaId, Window &w1) {
     for ( auto linha: zonas) {
-        for ( auto zona: linha) {
+        for ( auto &zona: linha) {
             if (zona.obterId() == zonaId) {
                 zona.listarPropriedade(w1);
             }
@@ -69,20 +61,27 @@ void Habitacao::ListaPropriedadeZona(int zonaId, Window &w1) {
 
 void Habitacao::listaComponente(int zonaId, Window &w1) {
     for ( auto linha: zonas) {
-        for ( auto zona: linha) {
+        for ( auto &zona: linha) {
             if (zona.obterId() == zonaId) {
                 zona.listarComponentes(w1);
             }
         }
     }
 }
-
+void Habitacao::adicionaCompomentes(int zonaId,char tipo, const string descricao,Window &w1) {
+    for ( auto linha: zonas) {
+        for ( auto &zona: linha) {
+            if (zona.obterId() == zonaId) {
+                w1<<"\nadicionado componente:"<<zona.adicionaComponente(tipo,descricao,w1);
+                return;
+            }
+        }
+    }
+}
 void Habitacao::modificaPropriZona(string nome, int zonaId, float valor, Window &wt) {
 
-    for (const auto linha: zonas) {
-
-        for ( auto zona: linha) {
-
+    for ( auto linha: zonas) {
+        for ( auto &zona: linha) {
             if (zona.obterId() == zonaId) {
                 zona.modificarPropriedade(nome, valor, wt);
                 return;
@@ -94,30 +93,28 @@ void Habitacao::modificaPropriZona(string nome, int zonaId, float valor, Window 
 
 void Habitacao::cria_zona(int linha, int coluna, Window &w1) {
     if (linha >= 0 && linha < tamanhoY && coluna >= 0 && coluna < tamanhoX) {
-        // w1 << "teve aqui " <<coluna<<linha<< tamanhoX << tamanhoY;
         zonas[linha][coluna] = Zona(proximoIdzona++);
-        // Associa a zona atual à sua janela correspondente no vetor de pares
-        associacaoZonaJanela.emplace_back(
-                make_pair(zonas[linha][coluna].obterId(),&janelas[linha * tamanhoX + coluna]));
 
-        // Limpa  janela
+        // Associa a zona atual à sua janela correspondente no map associacaoZonaJanela
+        associacaoZonaJanela.insert(make_pair(zonas[linha][coluna].obterId(), &janelas[linha * tamanhoX + coluna]));
+
+        // Limpa a janela correspondente à nova zona
         janelas[linha * tamanhoX + coluna].clear();
-        // Busca pela zona no vetor de associação
-        for (const auto &associacao: associacaoZonaJanela) {
-            if (associacao.first == zonas[linha][coluna].obterId()) {
-                // Adiciona o texto na janela correspondente à zona
-                *(associacao.second) << set_color(5) << "zona:" << zonas[linha][coluna].obterId();
-                zonas[linha][coluna].listarComponentes(*(associacao.second));
-                break; // Sai do loop depois de encontrar a associação
-            }
+
+        // Utiliza o map para encontrar a janela correspondente à zona atual
+        auto it = associacaoZonaJanela.find(zonas[linha][coluna].obterId());
+        if (it != associacaoZonaJanela.end()) {
+            *(it->second) << set_color(5) << "zona:" << zonas[linha][coluna].obterId();
+            zonas[linha][coluna].listarComponentes(*(it->second));
         }
+
         w1.clear();
         w1 << "zona adicionada";
     } else {
         w1 << "zona em posicao invalida\n";
     }
-
 }
+
 
 
 void Habitacao::criarHabitacao(int nlinhas, int nColunas, Terminal &t) {

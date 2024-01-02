@@ -11,6 +11,7 @@
 #include "Zona.h"
 #include "Propriedade.h"
 #include <vector>
+#include <map>
 
 using namespace term;
 using namespace std;
@@ -32,7 +33,7 @@ public:
 
     void listaComponente(int zonaId, Window &w1); // Lista componentes de uma zona
 
-    void adicionaCompomentes(int ZonaId, char tipo, const string &descricao, Window &w1); // Adiciona componentes a uma zona
+    void adicionaCompomentes(int ZonaId, char tipo, const string descricao, Window &w1); // Adiciona componentes a uma zona
 
     void cria_zona(int linha, int coluna, Window &wt); // Cria uma zona em uma determinada posição
 
@@ -46,7 +47,8 @@ private:
     int proximoIdzona = 1; // Próximo ID de zona a ser utilizado
     vector<Processador> Processadores; // Vetor de processadores
     // Vetor de pares para associar ID da zona ao ponteiro para a janela correspondente
-    vector<pair<int, Window *>> associacaoZonaJanela;
+    map<int, Window*> associacaoZonaJanela;
+
 };
 
 #endif //POO_TP_HABITACAO_H

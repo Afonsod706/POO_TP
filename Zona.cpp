@@ -52,7 +52,7 @@ void Zona::modificarPropriedade(const string nome, float novoValor, Window &w1) 
             } else {
                 w1 << "Valor fora do intervalo aceitavel para" << nome << "\n";
             }
-            listarComponentes(w1);
+            //listarComponentes(w1);
             // listarPropriedade(w1);
             return;
         }
@@ -71,22 +71,20 @@ void Zona::adicionarAparelho(const std::string &type) {
 
 void Zona::listarComponentes(Window &w1)  {
     w1 << "\ncomponente na zona:" << id;
-    int t=sensores.size();
-    w1 << "\nSensores:"<<t;
+//    int t=sensores.size();
+    w1 << "\nSensores:";
     for ( auto &sensor: sensores) {
-        w1<<"entra aqui\n";
         w1 << "\n" << sensor->getSimbolo() << sensor->getId() << ":" << sensor->getPropriedadeObervada() << "="
            << sensor->lerPropriedade(propriedades);
     }
-    t=processadores.size();
-    w1 << "\nProcessadores:"<<t;
+    //t=processadores.size();
+    w1 << "\nProcessadores:";
     for (auto &proce:processadores) {
-        w1<<proce->getId()<<"-Num:"<<proce->getNumRegras()<<"\n";
+        w1<<proce->getId()<<"\nNumRegras:"<<proce->getNumRegras()<<"\n";
     }
 }
 
 void Zona::listarPropriedade(Window &w1) {
-
     w1 << "Proriedades na zona " << id << ":\n";
     for (const auto &prop: propriedades) {
         w1 << "-" << prop->getNome() << ": Valor = " << prop->getValor() << "\n";

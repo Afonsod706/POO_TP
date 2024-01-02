@@ -64,12 +64,11 @@ namespace inter {
             w1 << "ja existe zona";
         }
 
-
     }
 
     void Interface::Pmod(int idzona, string nome, float valor) {
         if (flagHabitacao)
-            habitacao.modificaPropriZona(nome,idzona,valor,w1);
+            habitacao.modificaPropriZona(nome, idzona, valor, w1);
         else
             w1 << "habitacao nao existe\n";
     }
@@ -86,11 +85,9 @@ namespace inter {
             habitacao.ListaPropriedadeZona(idZona, w1);
         else
             w1 << "habitacao nao existe\n";
-
     }
 
     void Interface::startInterface() {
-
 
         //incializa ou define as cores do terminal a ser usadas posteriormente
         for (int i = 0; i < 20; i++)
@@ -128,7 +125,6 @@ namespace inter {
 
 
         while (!sair) {
-
             //limpa a janela 3 para receber um novo comando
             w3.getchar();
             w3.clear();
@@ -203,7 +199,9 @@ namespace inter {
                     w1 << set_color(2) << "comando valido:\n[" << comando << "]_ <nome> \n";
                 } else if (comando == "zcomp") {
 //                        w1.clear();
-habitacao.listaComponente(stoi(parametros[0]),w1);
+                    if (flagHabitacao) {
+                        habitacao.listaComponente(stoi(parametros[0]), w1);
+                    }
                     w1 << set_color(2) << "comando valido:\n[" << comando << "]_ID zona\n";
                 } else if (comando == "zprops") {
                     w1.clear();
@@ -284,8 +282,9 @@ habitacao.listaComponente(stoi(parametros[0]),w1);
                     //  w1.clear();
                     w1 << set_color(2) << "comando valido:\n[" << comando << "]\n<ID zona> <s | p | a> <ID>\n";
                 } else if (comando == "cnovo") {
-                       w1.clear();
-                       habitacao.adicionaCompomentes(stoi(parametros[0]),parametros[1][0],parametros[2],w1);
+                    w1.clear();
+                    if (flagHabitacao)
+                        habitacao.adicionaCompomentes(stoi(parametros[0]), parametros[1][0], parametros[2], w1);
                     w1 << set_color(2) << "comando valido:\n[" << comando
                        << "]\n<ID zona> <s | p | a> <tipo | comando>\n";
                 } else if (comando == "psalva") {
@@ -299,9 +298,9 @@ habitacao.listaComponente(stoi(parametros[0]),w1);
                     w1 << set_color(2) << "comando valido:\n[" << comando
                        << "]\n<ID zona> <ID proc. regras> <ID aparelho>\n";
                 } else if (comando == "pmod") {
-                     w1.clear();
-                     w1<<parametros[0]<<parametros[1]<<parametros[2];
-                    Pmod(stoi(parametros[0]),parametros[1],stof(parametros[2]));
+                    w1.clear();
+                    w1 << parametros[0] << parametros[1] << parametros[2];
+                    Pmod(stoi(parametros[0]), parametros[1], stof(parametros[2]));
                     w1 << set_color(2) << "\ncomando valido:\n[" << comando << "]\n<ID zona> <nome> <valor> \n";
                 } else {
                     // w1.clear();

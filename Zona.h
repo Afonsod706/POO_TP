@@ -13,6 +13,7 @@
 #include "Aparelhos.h"
 #include "Processador.h"
 #include "Propriedade.h"
+#include <map>
 
 using namespace term;
 using namespace std;
@@ -21,7 +22,7 @@ class Zona {
 public:
     Zona(int id);
 
-    const int  obterId() ; // Obtém o ID da zona
+    const int obterId() ; // Obtém o ID da zona
 
     // Modifica o valor da propriedade na zona, se existir
     void modificarPropriedade(const string nome, float novoValor, Window &w1);
@@ -55,10 +56,11 @@ public:
 
 private:
     int id; // ID da zona
-    vector<Propriedade*> propriedades; // Vetor de propriedades
-    vector<Sensor*> sensores; // Vetor de sensores
-    vector<Aparelhos> aparelhos; // Vetor de aparelhos
-    vector<Processador*> processadores; // Vetor de processadores
+    vector<Propriedade *> propriedades; // Vetor de propriedades
+    vector<Sensor *> sensores; // Usando para vetor de Sensores
+    vector<Aparelhos> aparelhos;
+    vector<Processador*> processadores; // Usando  para vetor de Processadores
+
 };
 
 #endif //POO_TP_ZONA_H

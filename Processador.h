@@ -16,22 +16,13 @@ public:
     Processador(const string &cmd = "") : comando(cmd), procId(proxId++) {};
 
     const int getNumRegras();
-
     void adicionarRegra(const Regra &novaRegra);
-
-    void listarRegras() const;
-
     int getId() const;
-
-    bool removerRegra(int regraId);
-
-    bool verificaRegras(const vector<Sensor> sensores) const;
-
-    void setComando(const string &cmd);
-
-    void verificaComando(const vector<Sensor> sensores);//não concluido
-
-    ~Processador() {};
+//    void listarRegras() const;
+//    bool removerRegra(int regraId);
+//    bool verificaRegras(const vector<Sensor> sensores) const;
+//    void setComando(const string &cmd);
+//    void verificaComando(const vector<Sensor> sensores);//não concluido
 
 private:
     vector<Regra> regras;
